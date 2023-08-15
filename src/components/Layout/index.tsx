@@ -1,5 +1,5 @@
 import react from "react";
-import checkSession from "../SessionCheck";
+import CheckSession from "../SessionCheck";
 import Nav from "../Nav";
 import { getServerSession } from "next-auth";
 
@@ -9,7 +9,7 @@ type PropsType = {
 
 const Layout = ({ children }: PropsType) => {
   let info: react.JSXElementConstructor<string> = children.type;
-  checkSession();
+  CheckSession();
 
   return (
     <div className="parent">

@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
-const checkSession = () => {
+const CheckSession = () => {
   const router = useRouter();
   const data = useSession();
   if (data.status === "unauthenticated") {
@@ -11,4 +11,4 @@ const checkSession = () => {
   return data.status;
 };
 
-export default checkSession;
+export default CheckSession;
