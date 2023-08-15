@@ -15,31 +15,6 @@ interface Dates {
 }
 
 const BarChart = () => {
-  const [chartData, setChartData] = useState({
-    datasets: [],
-  });
-
-  const [data, setData] = useState<Information[]>();
-  const [dates, setDates] = useState<Dates[]>();
-
-  const [chartOptions, setChartOptions] = useState({});
-
-  useEffect(() => {
-    const getList1 = async () => {
-      try {
-        await getStatsList()
-          .then((res) => res.json())
-          .then((json) => {
-            setData(json.data);
-            setDates(json.dates);
-          });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getList1();
-  }, []);
-
   const DataArr = () => {
     let nar: number[] = [];
     data?.reverse().map((e) => {
@@ -58,17 +33,70 @@ const BarChart = () => {
     return nar;
   };
 
+  const [chartData, setChartData] = useState({
+    datasets: [
+      {
+        labels: DatesArr(),
+        datasets: [
+          {
+            label: "Sales $",
+            data: DataArr(),
+            borderColor: "rgb(53, 162, 235)",
+            backgroundColor: "rgb(	21,	146,	168, 0.5)",
+          },
+        ],
+      },
+    ],
+  });
+
+  const [data, setData] = useState<Information[]>();
+  const [dates, setDates] = useState<Dates[]>();
+
+  const [chartOptions, setChartOptions] = useState({
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Monthly Revenue",
+      },
+    },
+    maintainAspectRatio: false,
+    responsive: true,
+  });
+
+  useEffect(() => {
+    const getList1 = async () => {
+      try {
+        await getStatsList()
+          .then((res) => res.json())
+          .then((json) => {
+            setData(json.data);
+            setDates(json.dates);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getList1();
+  }, []);
+
   //console.log(DataArr());
 
   useEffect(() => {
     setChartData({
-      labels: DatesArr(),
       datasets: [
         {
-          label: "Sales $",
-          data: DataArr(),
-          borderColor: "rgb(53, 162, 235)",
-          backgroundColor: "rgb(	21,	146,	168, 0.5)",
+          labels: DatesArr(),
+          datasets: [
+            {
+              label: "Sales $",
+              data: DataArr(),
+              borderColor: "rgb(53, 162, 235)",
+              backgroundColor: "rgb(	21,	146,	168, 0.5)",
+            },
+          ],
         },
       ],
     });
