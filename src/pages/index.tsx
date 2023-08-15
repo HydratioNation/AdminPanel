@@ -70,7 +70,7 @@ export default function Home() {
                   value={data.password}
                   onChange={(e) => handleChange(e)}
                 />
-                <button className={styles.showPass} onClick={() => setShowPass(!showPass)}>
+                <button className={styles.showPass} type="button" onClick={() => setShowPass(!showPass)}>
                   {showPass ? <BsFillEyeSlashFill size={25} /> : <BsFillEyeFill size={25} />}
                 </button>
               </div>
