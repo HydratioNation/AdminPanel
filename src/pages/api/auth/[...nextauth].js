@@ -10,7 +10,7 @@ export const authOptions = {
     CredentialsProvider({
       name: "Credentials",
 
-      async authorize(credentials) {
+      async authorize(credentials, req) {
         const response = await prisma.admins.findFirst({
           where: {
             login: credentials?.login.toLowerCase(),
