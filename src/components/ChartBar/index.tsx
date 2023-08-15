@@ -42,7 +42,7 @@ const BarChart = () => {
 
   const DataArr = () => {
     let nar: number[] = [];
-    data?.toReversed().map((e) => {
+    data?.reverse().map((e) => {
       if (e.sales !== null) nar.push(e.sales);
       else nar.push(0);
     });
@@ -51,7 +51,7 @@ const BarChart = () => {
 
   const DatesArr = () => {
     let nar: string[] = [];
-    dates?.toReversed().map((e) => {
+    dates?.reverse().map((e) => {
       if (e.Month) nar.push(e.Month);
       else nar.push("");
     });
