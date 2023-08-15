@@ -9,7 +9,7 @@ import { signIn } from "next-auth/react";
 export default function Home() {
   const router = useRouter();
   const [showPass, setShowPass] = useState(false);
-  const [response, setRespons] = useState<SignInResponse>();
+  const [response, setRespons] = useState();
   const [errors, setErrors] = useState({
     name_error: "",
     password_error: "",
