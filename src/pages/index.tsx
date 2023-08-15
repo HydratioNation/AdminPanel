@@ -39,7 +39,7 @@ export default function Home() {
       password: data.password,
       callbackUrl: "/mainpage",
     });
-    if (res?.ok) router.push(res.url);
+    if (res?.ok) router.push("/mainpage");
   };
 
   return (
