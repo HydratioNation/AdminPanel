@@ -8,12 +8,11 @@ type PropsType = {
 };
 
 const Layout = ({ children }: PropsType) => {
-  let info: react.JSXElementConstructor<string> = children.type;
   CheckSession();
 
   return (
     <div className="parent">
-      {info.name !== "Home" ? <Nav /> : ""}
+      {children.type.name !== "Home" ? <Nav /> : ""}
 
       <main>{children}</main>
     </div>
