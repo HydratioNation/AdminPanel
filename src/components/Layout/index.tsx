@@ -2,6 +2,7 @@ import react from "react";
 import CheckSession from "../SessionCheck";
 import Nav from "../Nav";
 import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
 
 type PropsType = {
   children: React.ReactElement;
@@ -9,10 +10,11 @@ type PropsType = {
 
 const Layout = ({ children }: PropsType) => {
   CheckSession();
+  const { data: session, status } = useSession();
 
   return (
     <div className="parent">
-      {children.type.name !== "Home" ? <Nav /> : ""}
+      {status === "authenticated" ? <Nav /> : ""}
 
       <main>{children}</main>
     </div>
