@@ -41,6 +41,7 @@ const getStats = async (req: NextApiRequest, res: NextApiResponse) => {
   };
 
   queryCreate();
+  query.reverse();
 
   try {
     const data = await prisma.$queryRaw`Select  
