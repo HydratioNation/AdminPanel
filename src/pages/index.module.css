@@ -91,3 +91,16 @@
     right: 0;
     background-color: transparent;
 }
+
+@media screen and (max-width: 950px) {
+    .holder {
+        width: 97%;
+    }
+
+    .img_holder {
+        display: none;
+    }
+    .form_holder {
+        width: 100%;
+    }
+}
