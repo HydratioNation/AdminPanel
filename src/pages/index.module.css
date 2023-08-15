@@ -1,0 +1,93 @@
+.container {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    background-color: #EAE5E5;
+    background: url("../img/back.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.holder {
+    width: 60%;
+    height: 75%;
+    background-color: var(--white);
+    position: relative;
+    display: flex;
+}
+ 
+.img_holder {
+    width: 40%;
+}
+
+.img_holder > img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.form_holder {
+    width: 60%;
+}
+
+.form_holder,
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1.3rem;
+    padding: 70px 0 50px;
+    position: relative;
+}
+
+.form {
+    width: 100%;
+}
+
+.form_holder > div > h1 {
+    color: var(--aqua);
+}
+
+.form > button {
+    width: 350px;
+    font-size: 1.5rem;
+}
+
+.input_holder {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+}
+
+.input_holder > input,
+.input_holder > div > input  {
+    padding: 5px;
+    font-size: 20px;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--black);
+    background-color: transparent !important;
+}
+
+.input_holder > input:focus,
+.input_holder > div > input:focus  {
+    outline: none;
+}
+
+.input_holder > div  {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.showPass {
+    position: absolute;
+    border: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    right: 0;
+    background-color: transparent;
+}

@@ -1,0 +1,220 @@
+.nav_container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    z-index: 4;
+    height: 100px;
+    width: 100vw;
+    color: var(--black);
+    transition:  var(--transition);
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 10000;
+
+}
+
+.nav_active { 
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+ 
+ 
+.nav_box {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100px;
+    width: 85vw;
+    margin: 0 auto;
+}
+
+.nav_img_con {
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.nav_img {
+    position: absolute;
+    left: 5px; 
+    width: auto;
+    height: 95px !important;
+}
+
+.nav_link_holder {
+    transition:   var(--transition);
+    position: absolute;
+    right: 14px;
+    width: 84%;
+    text-transform: uppercase;
+    height: 92px;
+    font-size: 1.11rem;
+    font-weight: 400;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    text-align: right;
+    gap: 0.75rem;
+}
+
+.nav_link_holder a:hover{
+    color: var(--aqua);
+}
+
+.Hamburger_container{ 
+    display: none;
+    position: absolute;
+    height: 100%;
+    right: 0;
+}
+
+.nav_link_mobile{
+    height: 0;
+    transition: all var(--transition);
+    overflow: hidden;
+    display: flex !important;
+    position: unset !important;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    margin-top: 100px;
+    row-gap: 1rem;
+}
+
+.nav_link_mobile_active {
+    height: 295px;
+}
+
+.nav_container_mobile{ 
+    
+    height: 366px;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.nav_container_mobile  .tooltip{ 
+    display: none !important;
+    
+}
+
+/* socials */
+
+.socials_container {
+    display: flex;
+    transition: all var(--transition);
+    align-items: center;    
+    gap: 0.5rem;
+}
+ 
+
+.icon {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.icon > span { 
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.gap {
+    gap: 1rem;
+}
+
+.icon > * {
+    font-size: 20px;
+    line-height: 50px;
+}
+
+.icon:hover .tooltip{
+    opacity: 1;
+    pointer-events: auto;
+    bottom:  -50px;
+}
+
+.tooltip {
+    z-index: 999;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    bottom: 0;
+    background: var(--white);
+    font-size: 15px;
+    line-height: 30px;
+    padding: 0px 4px;
+    border-radius: 26px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition) cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.tooltip:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    background: inherit;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.facebook:hover > *, 
+.facebook:hover .tooltip::before {
+    color: var(--white);
+    background: #3b5999;
+}
+
+.instagram:hover > *, 
+.instagram:hover .tooltip::before {
+    color: var(--white);
+    background: #e1306c;
+}
+ 
+ 
+ 
+@media screen and (max-width: 1300px) {
+    .nav_box{
+    width: 96vw;
+   }
+    .nav_img {
+    height: 82px !important;
+}
+}
+
+@media screen and (min-width: 1141px) {
+    .nav_link_mobile {
+        display: none !important;
+    }
+     .nav_container_mobile{ 
+    height: 100px;
+}
+}
+
+  
+@media screen and (max-width: 1140px) {
+   .Hamburger_container{ 
+    display: flex;
+    align-items: center
+    }
+    .nav_link_holder{ 
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+   .nav_img {
+    height: 75px !important;
+}
+   
+}
