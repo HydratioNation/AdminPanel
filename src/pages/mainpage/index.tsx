@@ -3,7 +3,7 @@ import styles from "./index.module.css";
 import Image from "next/image";
 import checkSession from "@/components/SessionCheck";
 import TopCards from "@/components/TopCards";
-import BarChart from "@/components/ChartBar";
+// import BarChart from "@/components/ChartBar";
 import { getNumberCustomersNSales, updatePasswordFunction } from "@/lib/api";
 import { useSession } from "next-auth/react";
 
