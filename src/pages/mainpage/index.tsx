@@ -90,7 +90,7 @@ const MainPage = () => {
           {numberOfCustomers ? <TopCards data={numberOfCustomers} /> : ""}
           <div>
             <h1>Graphs</h1>
-            <BarChart />
+            {/* <BarChart /> */}
           </div>
           <div className="topping flex-col">
             <h1>Change Password</h1>
