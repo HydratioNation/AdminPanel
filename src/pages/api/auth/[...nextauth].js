@@ -5,7 +5,7 @@ import { compare } from "bcrypt-ts";
 
 export const authOptions = {
   // Configure one or more authentication providers
-
+  secret: process.env.SECRET,
   providers: [
     CredentialsProvider({
       name: "Credentials",
