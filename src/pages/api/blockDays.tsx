@@ -36,7 +36,7 @@ const blockDays = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(200).json({ message: "Success" });
   } catch (err) {
     console.log(err);
-    return res.status(400).json({ message: err.message });
+    return res.status(400).json({ message: err });
   }
 };
 
