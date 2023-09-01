@@ -44,11 +44,12 @@ const Nav = () => {
         {/* PC Version */}
         <div className={styles.nav_link_holder}>
           <Link href={"/mainpage"}>Main Page</Link>
-          <a target="_blank" href="https://med-web-navy.vercel.app/" onClick={() => setOpen(!isOpen)}>
+          <a target="_blank" href="https://www.hydrationationiv.com/">
             Main Web Site
           </a>
           <Link href={"/customers"}>Customers </Link>
           <Link href={"/productspage"}>Products </Link>
+          <Link href={"/lockpage"}>Lock Dates</Link>
           <Link href={"/"} onClick={() => signOut()} className="yellow">
             Sign Out
           </Link>
@@ -81,11 +82,18 @@ const Nav = () => {
           } `}
         >
           <Link href={"/mainpage"}>Main Page</Link>
-          <a target="_blank" href="https://med-web-navy.vercel.app/" onClick={() => setOpen(!isOpen)}>
+          <a target="_blank" href="https://www.hydrationationiv.com/" onClick={() => setOpen(!isOpen)}>
             Main Web Site
           </a>
-          <Link href={"/customers"}>Customers </Link>
-          <Link href={"/productspage"}>Products </Link>
+          <Link href={"/customers"} onClick={() => setOpen(!isOpen)}>
+            Customers{" "}
+          </Link>
+          <Link href={"/productspage"} onClick={() => setOpen(!isOpen)}>
+            Products{" "}
+          </Link>
+          <Link href={"/lockpage"} onClick={() => setOpen(!isOpen)}>
+            Lock Dates
+          </Link>
           <Link href={"/"} onClick={() => signOut()} className="yellow">
             Sign Out
           </Link>

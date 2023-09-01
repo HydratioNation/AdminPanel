@@ -22,6 +22,28 @@ export const getStatsList = async () => {
   });
 };
 
+export const blockDaysFunction = async (data: { date: string; time: string; number: number }[]) => {
+  return await fetch("/api/blockDays", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
+};
+
+export const getLockedDates = async (date: string) => {
+  return await fetch("/api/getDates", {
+    method: "POST",
+    body: JSON.stringify(date),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
+};
+
 export const updateProductFunction = async (data: {
   id: number;
   icon: boolean;

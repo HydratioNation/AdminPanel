@@ -8,11 +8,7 @@ const ChangePass = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const data = req.body;
-
-  console.log(data);
   const resu = await hash(data.newpassword, 10);
-
-  console.log(resu);
 
   try {
     const response = await prisma.admins.update({

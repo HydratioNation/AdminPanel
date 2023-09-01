@@ -56,8 +56,6 @@ const BarChart = () => {
     getList1();
   }, []);
 
-  console.log(DataArr());
-
   const dataInfo = () => {
     return {
       labels: DatesArr(),
@@ -71,8 +69,6 @@ const BarChart = () => {
       ],
     };
   };
-
-  console.log(data, dates);
 
   const OptionsSet = () => {
     const data = {

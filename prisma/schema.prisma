@@ -8,13 +8,14 @@ datasource db {
 }
 
 model Booking {
-  id      Int    @id @default(autoincrement())
-  name    String
-  number  String
-  email   String
-  date    String
-  time    String
-  product String
+  id       Int    @id @default(autoincrement())
+  name     String
+  number   String
+  email    String
+  date     String
+  time     String
+  product  String
+  location String
 }
 
 model Products {

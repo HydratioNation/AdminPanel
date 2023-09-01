@@ -16,7 +16,7 @@ const getCustomersNSales = async (req: NextApiRequest, res: NextApiResponse) => 
 
   try {
     const data =
-      await prisma.$queryRaw`Select Sum(b.price) as sales, Count(a.id) as customers from "Booking" a left join "Products" b on a.product=b.name where a.date LIKE ${`%${thisMonth}%`} union all (select Sum(b.price)  , Count(a.id )  from "Booking" a left join "Products" b on a.product=b.name where a.date LIKE ${`%${previousMonth}%`}) `;
+      await prisma.$queryRaw`Select Sum(b.price) as sales, Count(a.id) as customers from "Booking" a left join "Products" b on a.product=b.name where a.date LIKE ${`%${thisMonth}%`} and a.name !='admin' union all (select Sum(b.price)  , Count(a.id )  from "Booking" a left join "Products" b on a.product=b.name where a.date LIKE ${`%${previousMonth}%`} and a.name !='admin') `;
 
     return res.json(
       JSON.parse(
