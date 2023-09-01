@@ -3,6 +3,9 @@ import { getProductsList } from "@/lib/api";
 import Image from "next/image";
 import load from "../../img/Spin.svg";
 import ProductCard from "@/components/ProductCard";
+import { AiOutlinePlus } from "react-icons/ai";
+import { FcCancel } from "react-icons/fc";
+import styles from "./index.module.css";
 
 interface ProductList {
   id: number;
@@ -16,7 +19,16 @@ interface ProductList {
 const ProductsPage = () => {
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState<ProductList[]>();
-
+  const [createCard, setCreateCard] = useState(false);
+  const [deleted, setDeleted] = useState(false);
+  const [newProduct, setNewProduct] = useState<ProductList>({
+    id: 0,
+    icon: false,
+    name: "",
+    price: 0,
+    description: "",
+    productType: "Recovery Hydration Pack",
+  });
   useEffect(() => {
     const getList = async () => {
       try {
@@ -30,7 +42,7 @@ const ProductsPage = () => {
       }
     };
     getList();
-  }, []);
+  }, [createCard, deleted]);
 
   const filterList = () => {
     return products?.filter((e) => {
@@ -58,9 +70,34 @@ const ProductsPage = () => {
             }}
           />
         </div>
+        <button className={styles.create_button} onClick={() => setCreateCard(!createCard)}>
+          {createCard ? <FcCancel size={50} /> : <AiOutlinePlus size={50} />}
+        </button>
+
+        {createCard ? (
+          <ProductCard
+            key={0}
+            data={newProduct}
+            newCard={true}
+            setCreateCard={setCreateCard}
+            setDeleted={setDeleted}
+            deleted={deleted}
+          />
+        ) : (
+          ""
+        )}
         {products ? (
           filterList()?.map((e) => {
-            return <ProductCard key={`${e.id}`} data={e} />;
+            return (
+              <ProductCard
+                key={`${e.id}`}
+                data={e}
+                newCard={false}
+                setCreateCard={setCreateCard}
+                setDeleted={setDeleted}
+                deleted={deleted}
+              />
+            );
           })
         ) : (
           <div className="center">

@@ -19,7 +19,7 @@ const blockDays = async (req: NextApiRequest, res: NextApiResponse) => {
   let data: booking[] = [];
   blockdates.map((e: { date: string; time: string; number: number }) => {
     data.push({
-      name: "Admin",
+      name: "admin",
       number: "",
       email: "",
       date: e.date,
@@ -41,15 +41,3 @@ const blockDays = async (req: NextApiRequest, res: NextApiResponse) => {
 };
 
 export default blockDays;
-
-// const data = await prisma.booking.create({
-//   data: {
-//     name: "Admin",
-//     email: "",
-//     number: "",
-//     date: e.date,
-//     time: e.time,
-//     product: "",
-//     location: "",
-//   },
-// });

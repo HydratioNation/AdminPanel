@@ -4,9 +4,10 @@ import Image from "next/image";
 import icon1 from "../../img/IVTherapyHydrationServices.svg";
 import icon2 from "../../img/InjectionTherapyHydrationServices.svg";
 import { VscEdit } from "react-icons/vsc";
-import { AiOutlineSave } from "react-icons/ai";
+import { AiOutlineSave, AiFillDelete } from "react-icons/ai";
 import { FcCancel } from "react-icons/fc";
-import { updateProductFunction } from "@/lib/api";
+import { createNewProductFunction, deleteProductFunction, updateProductFunction } from "@/lib/api";
+import { json } from "stream/consumers";
 
 interface IProps {
   data: {
@@ -17,6 +18,10 @@ interface IProps {
     description: string;
     productType: string;
   };
+  newCard: boolean;
+  setCreateCard: (e: React.SetStateAction<boolean>) => void;
+  setDeleted: (e: React.SetStateAction<boolean>) => void;
+  deleted: boolean;
 }
 
 interface UpdatedData {
@@ -28,8 +33,8 @@ interface UpdatedData {
   productType: string;
 }
 
-const ProductCard: FC<IProps> = ({ data }) => {
-  const [edit, setEdit] = useState(false);
+const ProductCard: FC<IProps> = ({ data, newCard, setCreateCard, setDeleted, deleted }) => {
+  const [edit, setEdit] = useState(newCard ? true : false);
   const [newData, setNewData] = useState<UpdatedData>(data);
   const [response, setResponse] = useState("");
   const [active, setActive] = useState(true);
@@ -78,8 +83,7 @@ const ProductCard: FC<IProps> = ({ data }) => {
     setNewData(data);
   };
 
-  // handle Submit
-
+  // handle update Submit
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     var regExp = /[a-zA-Z]/g;
@@ -132,10 +136,74 @@ const ProductCard: FC<IProps> = ({ data }) => {
     setActive(true);
   };
 
+  //create new card
+  const createNewCard = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    var regExp = /[a-zA-Z]/g;
+    var testString = "john";
+    setActive(!active);
+    setErros({
+      er_name: "",
+      er_price: "",
+      er_description: "",
+    });
+
+    if (!newData.name || newData.name.length < 1) {
+      setActive(true);
+      return setErros({ ...errors, er_name: "Can't be empty" });
+    }
+
+    if (!newData.price || newData.price.toString().length < 1) {
+      setActive(true);
+      return setErros({ ...errors, er_price: "Can't be empty" });
+    } else if (regExp.test(newData.price.toString())) {
+      setActive(true);
+      return setErros({ ...errors, er_price: "Can't contain letters" });
+    }
+    if (!newData.description || newData.description.length < 1) {
+      setActive(true);
+      return setErros({ ...errors, er_description: "Can't be empty" });
+    }
+
+    if (data === newData) {
+      setResponse("Data is the same");
+      setTimeout(function () {
+        setResponse("");
+      }, 6000);
+      return setActive(true);
+    }
+    try {
+      await createNewProductFunction(newData)
+        .then((res) => res.json())
+        .then((json) => {
+          setResponse(json.message);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+
+    setEdit(!edit);
+    setTimeout(function () {
+      setResponse("");
+    }, 6000);
+    setCreateCard(false);
+    setActive(true);
+  };
+
+  const handleDelete = async (id: number) => {
+    await deleteProductFunction(id)
+      .then((res) => {
+        res.json();
+      })
+      .then((json) => {});
+    setEdit(false);
+    setDeleted(!deleted);
+  };
+
   return (
     <form
       onSubmit={(e) => {
-        handleSubmit(e);
+        !newCard ? handleSubmit(e) : createNewCard(e);
       }}
       className={styles.productcard_container}
     >
@@ -215,20 +283,34 @@ const ProductCard: FC<IProps> = ({ data }) => {
       </div>
       <div className={`flex flex-col items-center ${styles.buttons} ${styles.child4} `}>
         <h1 className={response === "Product updated" ? "success" : "error"}>{response}</h1>
-        {!edit ? (
-          <button onClick={handleEdit}>
-            <VscEdit size={60} color={"var(--aqua)"} />
-          </button>
+        {!newCard ? (
+          !edit ? (
+            <button type="button" onClick={handleEdit}>
+              <VscEdit size={60} color={"var(--aqua)"} />
+            </button>
+          ) : (
+            <div className="flex gap-10">
+              {/* <button>Save</button> */}
+              <button type="submit" className={active ? "" : "disabled"} disabled={!active}>
+                <AiOutlineSave size={60} color={"var(--aqua)"} />
+              </button>
+              <button type="button" onClick={cancelEdit} className={active ? "" : "disabled"} disabled={!active}>
+                <FcCancel size={60} color={"red"} />
+              </button>
+              <button
+                type="button"
+                onClick={() => handleDelete(newData.id)}
+                className={active ? "" : "disabled"}
+                disabled={!active}
+              >
+                <AiFillDelete size={60} color={"red"} />
+              </button>
+            </div>
+          )
         ) : (
-          <div className="flex gap-10">
-            {/* <button>Save</button> */}
-            <button type="submit" className={active ? "" : "disabled"} disabled={!active}>
-              <AiOutlineSave size={60} color={"var(--aqua)"} />
-            </button>
-            <button onClick={cancelEdit} className={active ? "" : "disabled"} disabled={!active}>
-              <FcCancel size={60} color={"red"} />
-            </button>
-          </div>
+          <button type="submit" className={active ? "" : "disabled"} disabled={!active}>
+            <AiOutlineSave size={60} color={"var(--aqua)"} />
+          </button>
         )}
       </div>
     </form>

@@ -166,6 +166,9 @@ const LockPage = () => {
     }
     setActive([]);
     await getInfo(activeDate);
+    setTimeout(function () {
+      setResponse("");
+    }, 5000);
   };
 
   return (

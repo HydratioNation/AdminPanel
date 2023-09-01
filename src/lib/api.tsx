@@ -44,6 +44,35 @@ export const getLockedDates = async (date: string) => {
   });
 };
 
+export const deleteProductFunction = async (id: number) => {
+  return await fetch("/api/deleteProduct", {
+    method: "POST",
+    body: JSON.stringify(id),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
+};
+
+export const createNewProductFunction = async (data: {
+  id: number;
+  icon: boolean;
+  name: string;
+  price: number;
+  description: string;
+  productType: string;
+}) => {
+  return await fetch("/api/createNewProduct", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
+};
+
 export const updateProductFunction = async (data: {
   id: number;
   icon: boolean;

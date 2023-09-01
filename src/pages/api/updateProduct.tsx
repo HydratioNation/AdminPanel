@@ -12,7 +12,6 @@ const getProducts = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.json({ message: "Issues with data" });
   }
 
-  console.log(data);
   try {
     const prisma_response = await prisma.products.update({
       where: {

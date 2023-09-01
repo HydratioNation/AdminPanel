@@ -142,6 +142,10 @@ section {
   width: 100vw;
 }
 
+.ad_dis {
+    border: 1px solid var(--aqua) !important;
+}
+
 .active {
   background-color: var(--aqua) !important;
   color: white !important;
