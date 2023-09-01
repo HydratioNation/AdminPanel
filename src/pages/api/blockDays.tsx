@@ -1,12 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../prisma";
 
+interface booking {
+  name: string;
+  number: string;
+  email: string;
+  date: string;
+  time: string;
+  product: string;
+  location: string;
+}
+
 const blockDays = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "POST") {
     return res.json({ message: "Not A POST" });
   }
   const blockdates = req.body;
-  let data: {}[] = [];
+  let data: booking[] = [];
   blockdates.map((e: { date: string; time: string; number: number }) => {
     data.push({
       name: "Admin",
@@ -18,10 +28,10 @@ const blockDays = async (req: NextApiRequest, res: NextApiResponse) => {
       location: "",
     });
   });
-
+  console.log(data);
   try {
     const response = await prisma.booking.createMany({
-      data,
+      data: data,
     });
     return res.status(200).json({ message: "Success" });
   } catch (err) {
