@@ -99,9 +99,10 @@ const MainPage = () => {
           </div>
           <form onSubmit={handleUpdate} className="flex flex-col gap-y-7">
             <div className="topping flex-col">
-              <label htmlFor="">New password:</label>
+              <label htmlFor="newpassword">New password:</label>
               <input
                 type="text"
+                id="newpassword"
                 placeholder="New Password"
                 value={password.newpassword}
                 name="newpassword"
@@ -109,8 +110,9 @@ const MainPage = () => {
               />
             </div>
             <div className="topping flex-col">
-              <label htmlFor="">Confirm password:</label>
+              <label htmlFor="confirm">Confirm password:</label>
               <input
+                id="confirm"
                 value={password?.confirm}
                 placeholder="Confirm password"
                 onChange={handleChange}

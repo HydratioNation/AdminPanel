@@ -55,17 +55,18 @@ export default function Home() {
           <form onSubmit={(e) => handleClick(e)} className={styles.form}>
             <span className="error">{errors.not_found}</span>
             <div className={styles.input_holder}>
-              <label htmlFor="input">Name:</label>
+              <label htmlFor="login">Name:</label>
               <span className="error">{errors.name_error}</span>
-              <input type="text" name="login" value={data.login} onChange={(e) => handleChange(e)} />
+              <input type="text" id="login" name="login" value={data.login} onChange={(e) => handleChange(e)} />
             </div>
             <div className={styles.input_holder}>
-              <label htmlFor="input">Password:</label>
+              <label htmlFor="password">Password:</label>
               <span className="error">{errors.password_error}</span>
               <div>
                 <input
                   type={showPass ? "text" : "password"}
                   name="password"
+                  id="password"
                   value={data.password}
                   onChange={(e) => handleChange(e)}
                 />

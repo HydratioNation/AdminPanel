@@ -209,13 +209,12 @@ const ProductCard: FC<IProps> = ({ data, newCard, setCreateCard, setDeleted, del
     >
       <div className="flex items-start ">
         <div className={`${styles.inputs_cont} ${styles.child}`}>
-          <label htmlFor="input">Product Name:</label>
-          <label htmlFor="er" className="error">
-            {errors.er_name}
-          </label>
+          <label htmlFor="name">Product Name:</label>
+          <label className="error">{errors.er_name}</label>
           <input
             className={`${styles.inputs} ${edit ? styles.border : ""} `}
             type="text"
+            id="name"
             placeholder="product name"
             value={newData.name}
             name="name"
@@ -226,10 +225,8 @@ const ProductCard: FC<IProps> = ({ data, newCard, setCreateCard, setDeleted, del
         <Image src={newData.icon ? icon1 : icon2} alt="img" height={70} />
       </div>
       <div className={`${styles.inputs_cont} ${styles.child1}`}>
-        <label htmlFor="input">Price:</label>
-        <label htmlFor="er" className="error">
-          {errors.er_price}
-        </label>
+        <label htmlFor="price">Price:</label>
+        <label className="error">{errors.er_price}</label>
         <div className={`flex align-center f-12 ${styles.price} `}>
           $
           <input
@@ -238,6 +235,7 @@ const ProductCard: FC<IProps> = ({ data, newCard, setCreateCard, setDeleted, del
             placeholder="price"
             value={newData.price}
             name="price"
+            id="price"
             onChange={(e) => {
               setNewData({ ...newData, price: parseInt(e.target.value) });
             }}
@@ -251,13 +249,12 @@ const ProductCard: FC<IProps> = ({ data, newCard, setCreateCard, setDeleted, del
         </div>
       </div>
       <div className={`${styles.inputs_cont} ${styles.child2}`}>
-        <label htmlFor="input">Description:</label>
-        <label htmlFor="er" className="error">
-          {errors.er_description}
-        </label>
+        <label htmlFor="description">Description:</label>
+        <label className="error">{errors.er_description}</label>
         <textarea
           className={`${styles.inputs} ${edit ? styles.border : ""} ${styles.min_area} `}
           name="description"
+          id="description"
           cols={30}
           rows={3}
           value={newData.description}
@@ -268,10 +265,11 @@ const ProductCard: FC<IProps> = ({ data, newCard, setCreateCard, setDeleted, del
         ></textarea>
       </div>
       <div className={`${styles.inputs_cont} ${styles.child3}`}>
-        <label htmlFor="input">Product Type:</label>
+        <label htmlFor="productType">Product Type:</label>
         <select
           className={`${styles.inputs} ${edit ? styles.border : "pointer-events-none"} `}
           name="productType"
+          id="productType"
           onChange={(e) => {
             handleChange(e);
           }}

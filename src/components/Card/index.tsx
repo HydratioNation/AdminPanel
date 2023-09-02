@@ -11,6 +11,7 @@ interface IProps {
     date: string;
     time: string;
     product: string;
+    location: string;
     price: number;
   };
 }
@@ -38,8 +39,10 @@ const Card: FC<IProps> = ({ data }) => {
         </p>
       </div>
       <div className={styles.card_info}>
-        <p className="text-gray-800 font-bold">{data.date}</p>
-        <p className="text-gray-800 font-bold">{data.time}</p>
+        <p className="text-gray-800 font-bold">
+          {data.date} {data.time}
+        </p>
+        <p className="text-gray-800 font-bold">{data.location}</p>
       </div>
     </div>
   );

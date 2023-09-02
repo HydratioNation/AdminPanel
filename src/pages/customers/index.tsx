@@ -13,6 +13,7 @@ interface CustomersList {
   date: string;
   time: string;
   product: string;
+  location: string;
   price: number;
 }
 
