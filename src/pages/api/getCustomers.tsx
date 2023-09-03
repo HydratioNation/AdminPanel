@@ -8,7 +8,7 @@ const getCustomers = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const data = await prisma.$queryRaw`select a.* , b.price
  from "Booking" a 
- left join "Products" b on a.product=b.name and a.name != 'admin'
+ left join "Products" b on a.product=b.name where a.name != 'admin'
 `;
     return res.json(data);
   } catch (error) {
